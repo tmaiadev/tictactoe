@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
+
 .app {
   display: block;
   width: 100%;
@@ -6,11 +8,45 @@
   top: 0px;
   left: 0px;
 
+  --background-color: #FFF;
+  --text-color: #707070;
+  --primary-color: #55B4FA;
+  --secondary-color: #F81B81;
+  --menu-background: #FFF;
+
   background-color: var(--background-color);
+}
+
+.app,
+.app * {
+  font-family: 'Arimo', sans-serif;
   color: var(--text-color);
+
+  transition: color .3s ease-in-out,
+    background-color .3s ease-in-out,
+    fill .3s ease-in-out;
 }
 
 .app--dark-theme {
   --background-color: #000;
   --text-color: #FFF;
+  --menu-background: #131212;
+}
+
+.app--no-outlines,
+.app--no-outlines * {
+  outline: none;
+}
+
+.app__menu-button {
+  display: block;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
+}
+
+.app a {
+  color: var(--primary-color);
+  text-decoration: none;
 }

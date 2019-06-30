@@ -14,6 +14,14 @@ export const GAME_STATE_ACTION_TYPE = {
   CHECK: 'CHECK',
   RESET: 'RESET',
   RESET_SCORE: 'RESET_SCORE',
+  CHANGE_DIFFICULTY: 'CHANGE_DIFFICULTY',
+};
+
+export const GAME_DIFFICULTIES = {
+  EASY: 'EASY',
+  MEDIUM: 'MEDIUM',
+  HARD: 'HARD',
+  GODLIKE: 'GODLIKE',
 };
 
 export const defaultValue = {
@@ -28,6 +36,7 @@ export const defaultValue = {
     a3: null, b3: null, c3: null,
   },
   state: GAME_STATE.IDLE,
+  difficulty: GAME_DIFFICULTIES.MEDIUM,
 };
 
 export const dispatcher = (state, action) => {
@@ -79,6 +88,22 @@ export const dispatcher = (state, action) => {
     {
       const newState = {...state};
       newState.score = defaultValue.score;
+      return newState;
+    }
+
+    case GAME_STATE_ACTION_TYPE.CHANGE_DIFFICULTY:
+    {
+      // Validate Payload
+      const validPayloads = Object
+        .keys(GAME_DIFFICULTIES)
+        .map(k => GAME_DIFFICULTIES[k]);
+      
+      if (validPayloads.indexOf(action.payload) === -1) {
+        throw new Error('Invalid payload');
+      }
+      
+      const newState = {...state};
+      newState.difficulty = action.payload;
       return newState;
     }
 
