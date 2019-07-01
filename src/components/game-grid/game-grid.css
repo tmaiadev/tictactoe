@@ -1,0 +1,15 @@
+.game-grid {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2px;
+  background-color: var(--text-color);
+}
+
+.game-grid__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: var(--background-color);
+}

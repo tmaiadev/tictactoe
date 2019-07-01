@@ -49,11 +49,14 @@ export const dispatcher = (state, action) => {
     if (!action.payload) throw new Error('payload is required');
     if (Object.keys(defaultValue.board).indexOf(action.payload.target) === -1) throw new Error('payload.target has unexpected value');
     if (['x', 'o'].indexOf(action.payload.value) === -1) throw new Error('payload.value is invalid. It expects `x` or `o`');
-    if (state.board[action.payload.cellName] !== null) throw new Error('target is not empty');
+    if (state.board[action.payload.target] !== null) throw new Error('target is not empty');
     
       const newState = {...state};
       newState.board[action.payload.target] = action.payload.value;
       newState.round += 1;
+
+      if (action.payload.value === 'o') newState.state = GAME_STATE.OPPONENTS_TURN;
+      if (action.payload.value === 'x') newState.state = GAME_STATE.YOUR_TOURN;
 
       const result = checkResult(newState.board);
       const won = result && result.winner === 'o';

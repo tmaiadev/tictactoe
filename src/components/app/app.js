@@ -7,10 +7,11 @@ import GameStateContext, {
 import Button from '../button/button';
 import Icon from '../icon/icon';
 import Menu from '../menu/menu';
+import Game from '../game/game';
 import './app.css';
 
 function App() {
-  const [darkTheme, setDarkTheme] = useState(false);
+  const [darkTheme, setDarkTheme] = useState(Boolean(localStorage.getItem('darktheme')));
   const [menu, setMenu] = useState(false);
   const [noOutlines, setNoOutlines] = useState(false);
   const [gameState, dispatchGameState] = useReducer(gameStateDispatcher, gameStateDefaultValue);
@@ -46,7 +47,13 @@ function App() {
     };
   }, [noOutlines]);
 
-  window.t = () => setDarkTheme(!darkTheme);
+  useEffect(() => {
+    document.body.style.backgroundColor = darkTheme
+      ? '#000'
+      : '#FFF';
+    if (darkTheme) localStorage.setItem('darktheme', '1');
+    else localStorage.removeItem('darktheme');
+  }, [darkTheme]);
 
   return (
     <DarkThemeContext.Provider value={[darkTheme, setDarkTheme]}>
@@ -62,6 +69,9 @@ function App() {
                 toggleDarkTheme={() => setDarkTheme(!darkTheme)}
               />
             : null}
+          <div className="app__content">
+            <Game />
+          </div>
           <div className="app__menu-button">
             <Button
               onClick={() => setMenu(true)}
