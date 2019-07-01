@@ -16,28 +16,37 @@ function Score() {
     const { you, opponent } = gameState.score;
     if (you === oScore && opponent === xScore) return;
 
+    function transitionEnd($el) {
+      return new Promise(resolve => {
+        $el.addEventListener('transitionend', resolve, { once: true });
+      });
+    }
+
     // Get score number and hide it
     const $n = document.getElementById(`${you !== oScore ? 'o' : 'x'}-score`);
     $n.classList.add('score__number--hide');
-    $n.addEventListener('transitionend', () => {
-      // After the animation, we set the number
-      // to will-update position
-      $n.classList.remove('score__number--hide');
-      $n.classList.add('score__number--will-update');
-      
-      // We update the score
-      if (oScore !== you) {
-        setOScore(you);
-      } else {
-        setXScore(opponent);
-      }
 
-      
-      $n.addEventListener('transitionend', () => {
+    transitionEnd($n)
+      .then(() => {
+        // After the animation, we set the number
+        // to will-update position
+        $n.classList.remove('score__number--hide');
+        $n.classList.add('score__number--will-update');
+        
+        // We update the score
+        if (oScore !== you) {
+          setOScore(you);
+        } else {
+          setXScore(opponent);
+        }
+
+        // Wait for the will-update animation to end
+        return transitionEnd($n);
+      })
+      .then(() => {
         // Number will now be shown
         $n.classList.remove('score__number--will-update');
-      }, { once: true });
-    }, { once: true });
+      });
   }, [gameState, oScore, setOScore, xScore, setXScore]);
 
   return (
