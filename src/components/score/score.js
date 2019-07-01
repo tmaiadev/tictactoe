@@ -34,8 +34,8 @@ function Score() {
 
       
       $n.addEventListener('transitionend', () => {
+        // Number will now be shown
         $n.classList.remove('score__number--will-update');
-        $n.classList.add('ready');
       }, { once: true });
     }, { once: true });
   }, [gameState, oScore, setOScore, xScore, setXScore]);

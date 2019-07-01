@@ -38,7 +38,3 @@
   opacity: 0;
   transform: translateY(-150%);
 }
-
-.score__number--ready {
-  opacity: 1;
-}
