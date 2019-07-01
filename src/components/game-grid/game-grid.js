@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import ai from '../../libs/ai';
 import GameStateContext, {
   GAME_STATE_ACTION_TYPE,
   GAME_STATE,
@@ -22,49 +23,11 @@ function GameGrid() {
   useEffect(() => {
     if (gameState.state !== GAME_STATE.OPPONENTS_TURN) return;
     setTimeout(() => {
-      const { board } = gameState;
-
-      // EASY
-      // 100% of the moves are Random
-
-      // MEDIUM
-      // 50% of the moves are Random
-
-      // HARD
-      // 10% of the moves are Random
-
-      // GODLIKE
-      // No moves are Random
-
-      // AI
-      //
-      // 1. Check for imminent danger
-      //    When 2 cells of the row are filled
-      //    with your mark, and one is empty
-      //
-      // 2. Check for imminent win
-      //    When 2 cells of the row are filled
-      //    with the opponents mark, and one
-      //    is empty
-      //
-      // 3. Check for possible win
-      //    When one cell of the row is filled
-      //    with your mark, and two are empty
-      //
-      // 4. Random
-      //    Pick whatever cell is empty
-
-      const emptyCells = Object
-        .keys(board)
-        .map(key => ({ key, value: board[key] }))
-        .filter(o => o.value === null)
-        .map(o => o.key);
-      const randomIndex = Math.floor(emptyCells.length * Math.random());
-      const randomCell = emptyCells[randomIndex];
+      const { board, difficulty } = gameState;
       dispatchGameState({
         type: GAME_STATE_ACTION_TYPE.CHECK,
         payload: {
-          target: randomCell,
+          target: ai(board, difficulty),
           value: 'x',
         },
       });

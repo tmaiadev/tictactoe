@@ -21,7 +21,6 @@ export const GAME_DIFFICULTIES = {
   EASY: 'EASY',
   MEDIUM: 'MEDIUM',
   HARD: 'HARD',
-  GODLIKE: 'GODLIKE',
 };
 
 export const defaultValue = {
@@ -36,7 +35,7 @@ export const defaultValue = {
     a3: null, b3: null, c3: null,
   },
   state: GAME_STATE.IDLE,
-  difficulty: GAME_DIFFICULTIES.MEDIUM,
+  difficulty: localStorage.getItem('difficulty') || GAME_DIFFICULTIES.HARD,
 };
 
 export const dispatcher = (state, action) => {
@@ -108,6 +107,8 @@ export const dispatcher = (state, action) => {
       if (validPayloads.indexOf(action.payload) === -1) {
         throw new Error('Invalid payload');
       }
+
+      localStorage.setItem('difficulty', action.payload);
       
       const newState = {...state};
       newState.difficulty = action.payload;

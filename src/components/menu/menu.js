@@ -117,7 +117,6 @@ function Menu({
                   { label: 'Easy', value: GAME_DIFFICULTIES.EASY },
                   { label: 'Medium', value: GAME_DIFFICULTIES.MEDIUM },
                   { label: 'Hard', value: GAME_DIFFICULTIES.HARD },
-                  { label: 'Godlike', value: GAME_DIFFICULTIES.GODLIKE },
                 ]}
                 onChange={onDifficultyChange}
               />
