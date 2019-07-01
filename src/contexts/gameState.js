@@ -82,7 +82,11 @@ export const dispatcher = (state, action) => {
     {
       const newState = {...state};
       newState.round = 0;
-      newState.board = defaultValue.board;
+      newState.board = {
+        a1: null, b1: null, c1: null,
+        a2: null, b2: null, c2: null,
+        a3: null, b3: null, c3: null,
+      };
       newState.state = GAME_STATE.IDLE;
       return newState;
     }
