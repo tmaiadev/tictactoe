@@ -1,4 +1,5 @@
 import { GAME_DIFFICULTIES } from '../contexts/gameState';
+import { diff } from '../../node_modules/jest-matcher-utils/build';
 
 function checkImminentWin(board) {
   function isImminentWin(xCellname, yCellname, zCellname) {
@@ -167,20 +168,22 @@ function getRandomCell(board) {
 
 export default function(board, difficulty) {
   const chance = Math.random() * 100;
+  let willUseAI = false;
 
   // HARD
   // No moves are Random
-  let willUseAI = true;
+  if (difficulty === GAME_DIFFICULTIES.HARD)
+    willUseAI = true;
 
   // MEDIUM
   // 25% of the moves are Random
   if (difficulty === GAME_DIFFICULTIES.MEDIUM)
-    willUseAI = chance <= 75;
+    willUseAI = chance >= 25;
 
   // EASY
   // 50% of the moves are Random
   if (difficulty === GAME_DIFFICULTIES.EASY)
-    willUseAI = chance <= 50;
+    willUseAI = chance >= 50;
 
   // AI
   //
