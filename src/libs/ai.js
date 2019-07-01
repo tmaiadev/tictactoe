@@ -1,5 +1,4 @@
 import { GAME_DIFFICULTIES } from '../contexts/gameState';
-import { diff } from '../../node_modules/jest-matcher-utils/build';
 
 function checkImminentWin(board) {
   function isImminentWin(xCellname, yCellname, zCellname) {
