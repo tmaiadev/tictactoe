@@ -6,7 +6,7 @@ import './game.css';
 
 function Game() {
   return (
-    <div className="game">
+    <div className="game animated zoomIn fast">
       <Score />
       <GameGrid />
       <Status />

@@ -8,13 +8,14 @@ function Cell({
   value,
   onClick,
   disabled,
+  opaque,
 }) {
   return (
     <button
       type="button"
       aria-label={Boolean(value) ? `${name}: ${value}` : 'Empty'}
       disabled={disabled || Boolean(value)}
-      className="cell"
+      className={`cell ${opaque ? 'cell--opaque' : ''}`}
       onClick={onClick}
     >
       {value
@@ -39,11 +40,13 @@ Cell.propTypes = {
   value: PropTypes.oneOf(['x', 'o']),
   onClick: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
+  opaque: PropTypes.bool,
 };
 
 Cell.defaultProps = {
   disabled: false,
   value: null,
+  opaque: false,
 };
 
 export default Cell;

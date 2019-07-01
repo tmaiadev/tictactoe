@@ -34,6 +34,7 @@ export const defaultValue = {
     a2: null, b2: null, c2: null,
     a3: null, b3: null, c3: null,
   },
+  winnerCells: [],
   state: GAME_STATE.IDLE,
   difficulty: localStorage.getItem('difficulty') || GAME_DIFFICULTIES.HARD,
 };
@@ -62,6 +63,10 @@ export const dispatcher = (state, action) => {
       const lost = result && result.winner === 'x';
       const draw = !result && newState.round === 9;
 
+      if (won || lost) {
+        newState.winnerCells = result.cells;
+      }
+
       if (won) {
         newState.score.you += 1;
         newState.state = GAME_STATE.WIN;
@@ -87,6 +92,7 @@ export const dispatcher = (state, action) => {
         a3: null, b3: null, c3: null,
       };
       newState.state = GAME_STATE.IDLE;
+      newState.winnerCells = [];
       return newState;
     }
 

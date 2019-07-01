@@ -8,8 +8,17 @@
   height: 100%;
   background-color: transparent;
   border: 0px;
+  will-change: opacity;
+  transition: opacity .3s ease-in-out,
+    color .3s ease-in-out,
+    background-color .3s ease-in-out,
+    fill .3s ease-in-out !important;
 }
 
 .cell:hover {
   cursor: pointer;
+}
+
+.cell--opaque {
+  opacity: .3;
 }

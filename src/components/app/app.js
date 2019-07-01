@@ -58,7 +58,7 @@ function App() {
   return (
     <DarkThemeContext.Provider value={[darkTheme, setDarkTheme]}>
       <GameStateContext.Provider value={[gameState, dispatchGameState]}>
-        <div className={'app animated zoomIn fast ' +
+        <div className={'app ' +
           (darkTheme ? 'app--dark-theme ' : '') +
           (noOutlines ? 'app--no-outlines ' : '')
         }>
