@@ -4,3 +4,9 @@
   border: none;
   background-color: transparent;
 }
+
+.button--primary {
+  color: #FFF !important;
+  background-color: var(--primary-color);
+  border-radius: 4px;
+}

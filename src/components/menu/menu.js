@@ -50,6 +50,12 @@ function Menu({
     });
   }
 
+  function reset() {
+    const msg = 'Are you sure you want to reset the score?';
+    if (window.confirm(msg))
+      window.location.reload();
+  }
+
   useEffect(() => {
     window.addEventListener('keydown', onEscPressed);
     return () => window.removeEventListener('keydown', onEscPressed);
@@ -120,6 +126,18 @@ function Menu({
                 ]}
                 onChange={onDifficultyChange}
               />
+            </div>
+            <div className="menu__form-group">
+              <label htmlFor="reset-score">
+                Reset Score
+              </label>
+              <Button
+                id="reset-score"
+                onClick={reset}
+                primary
+              >
+                Reset
+              </Button>
             </div>
           </form>
           <footer className="menu__footer">
