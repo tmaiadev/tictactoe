@@ -52,5 +52,6 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#55B4FA",
-  "background_color": "#FFF"
+  "background_color": "#FFF",
+  "description": "Play Tic Tac Toe against an AI on 3 difficulty levels"
 }
