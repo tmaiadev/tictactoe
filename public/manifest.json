@@ -52,5 +52,30 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#55B4FA",
-  "background_color": "#FFF"
+  "background_color": "#FFF",
+  "description": "Play Tic Tac Toe against an AI on 3 difficulty levels",
+  "categories": ["games"],
+  "screenshots": [
+    {
+      "src": "/screenshots/game-light.png",
+      "type": "image/png",
+      "sizes": "400x800",
+      "platform": "android",
+      "label": "the Tic Tac Toe game board with an in progress game"
+    },
+    {
+      "src": "/screenshots/game-dark.png",
+      "type": "image/png",
+      "sizes": "400x800",
+      "platform": "android",
+      "label": "the Tic Tac Toe game board with a dark background"
+    },
+    {
+      "src": "/screenshots/menu-light.png",
+      "type": "image/png",
+      "sizes": "400x800",
+      "platform": "android",
+      "label": "a menu with a checkbox for Dark Mode, a dropdown for difficulty with \"Hard\" selected, a button to reset score, a link to Thalles Maia the creator, and a link to the source code for this project"
+    }
+  ]
 }
